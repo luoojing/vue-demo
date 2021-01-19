@@ -43,10 +43,166 @@
 
         </todo-item>
 
-        <div id="app8" v-for="item in data">
-            <input value="item.a">
-        </div>
+
     </ol>
+
+    <div id="app8">
+    <input id="app9" v-bind:value="a">
+
+    </div>
+
+    <div id="app10">
+        <p>Using mustaches: {{ rawHtml }}</p>
+        <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+    </div>
+
+
+    <div id="app11">
+        <button v-on:click="dothis">123</button>
+    </div>
+
+
+    <div id="app12">
+
+        <h1 v-if="awesome">Vue is awesome!</h1>
+        <h1 v-else>Oh no 😢</h1>
+    </div>
+
+    <ul id="app13">
+        <li v-for="item in items" :key="item.message">
+            {{ item.message }}
+        </li>
+    </ul>
+
+    <ul id="app14"><!--可以用 item of items替换in-->
+        <li v-for="(item,index) in items" :key="item.message">
+            {{ parent }}--{{ index }}--{{ item.message }}
+        </li>
+    </ul>
+
+    <ul id="app15"><!--可以用 item of items替换in-->
+        <li v-for="(value,name) in object" >
+            {{ name }}:{{value}}
+        </li>
+    </ul>
+
+    <ul id="app16">
+        <li v-for="item in countitems" :key="item.message">
+            {{ item }}
+        </li>
+    </ul>
+    <div id="app17">
+        <ul  v-for="item in items">
+            <li v-for="i in even(item)">{{i}}</li>
+        </ul>
+    </div>
+
+    <div id="app18">
+        <ul v-if="todos.length">
+            <li v-for="todo in todos">
+                {{ todo }}
+            </li>
+        </ul>
+        <p v-else>No todos left!</p>
+    </div>
+    <div id="todo-list-example">
+        <form v-on:submit.prevent="addNewTodo">
+            <label for="new-todo">Add a todo</label>
+            <input
+                    v-model="newTodoText"
+                    id="new-todo"
+                    placeholder="E.g. Feed the cat"
+            >
+            <button>Add</button>
+        </form>
+        <ul>
+            <li
+                    is="todo-item"
+                    v-for="(todo, index) in todos"
+                    v-bind:key="todo.id"
+                    v-bind:title="todo.title"
+                    v-on:remove="todos.splice(index, 1)"
+            ></li>
+        </ul>
+    </div>
+    <div id="app19">
+        <button v-on:click="counter += 1">Add 1</button>
+        <p>The button above has been clicked {{ counter }} times.</p>
+
+    </div>
+
+    <div id="app20">
+        <button v-on:click="greet">greet</button>
+
+    </div>
+
+    <div id="app21">
+        <button v-on:click="warn('Form cannot be submitted yet.', $event)">
+            Submit
+        </button>
+    </div>
+
+    <div id="app22">
+        <input v-on:keydown.ctrl.65="submit">
+    </div>
+
+    <div id="app23">
+        <!-- 即使 Alt 或 Shift 被一同按下时也会触发 -->
+        <button v-on:click.ctrl="onClick">App23</button>
+        <!-- 有且只有 Ctrl 被按下的时候才触发 -->
+        <button v-on:click.ctrl.exact="onClick">only ctrl</button>
+        <!-- 没有任何系统修饰符被按下的时候才触发 -->
+        <button v-on:click.exact="onClick">not</button>
+
+        <button v-on:click.right="onClick">mouse right</button>
+    </div>
+
+    <div id="app24">
+        <input v-model="message" placeholder="edit me">
+        <p>Message is: {{ message }}</p>
+    </div>
+
+    <div id="app25">
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{ checked }}</label>
+
+
+
+    </div>
+
+    <div id="app26">
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <label for="mike">Mike</label>
+        <br>
+        <span>Checked names: {{ checkedNames }}</span>
+    </div>
+
+    <div id="app27">
+        <input v-model.lazy="msg">
+        <span>{{msg}}</span>
+    </div>
+
+    <div id="components-demo">
+        <blog-post title="My journey with Vue"></blog-post>
+        <button-counter></button-counter>
+    </div>
+
+
+    <div id="blog-posts-events-demo">
+        <div :style="{ fontSize: postFontSize + 'em' }">
+            <blog-post1
+                    title="123123123"
+                    v-for="post in posts"
+                    v-bind:key="post.id"
+                    v-bind:post="post"
+                    v-on:enlarge-text="postFontSize += 0.1"
+            ></blog-post1>
+        </div>
+    </div>
     <!-- built files will be auto injected -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
